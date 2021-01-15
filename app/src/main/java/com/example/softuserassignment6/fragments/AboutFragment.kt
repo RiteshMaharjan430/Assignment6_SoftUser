@@ -1,26 +1,36 @@
 package com.example.softuserassignment6.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import com.example.softuserassignment6.R
+
 
 class AboutFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
+    var mWebView: WebView? = null
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        val v: View = inflater.inflate(R.layout.fragment_about, container, false)
+
+        mWebView = v.findViewById<View>(R.id.webview) as WebView
+        mWebView!!.loadUrl("https://www.softwarica.edu.np")
+        val webSettings = mWebView!!.settings
+        webSettings.javaScriptEnabled = true
+        mWebView!!.webViewClient = WebViewClient()
+        return v
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }
